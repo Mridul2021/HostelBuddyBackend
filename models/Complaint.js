@@ -30,7 +30,6 @@ const PartnerSchema = new mongoose.Schema({
     required: true,
     trim: true,
     lowercase: true, // Store emails in lowercase for consistency
-    unique: true, // Ensure unique email addresses
     match: /^\S+@\S+\.\S+$/, // Basic email format validation
   },
   issueType: {
