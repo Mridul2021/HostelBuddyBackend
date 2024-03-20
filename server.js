@@ -42,11 +42,17 @@ mongoose.connection.on("error", async (err) => {
 });
 //-------------------------models-------------
 require("./models/Complaint");
+require("./models/RoomCleaning");
+require("./models/Harresment");
+require("./models/MessIssue");
 
 
 
 //---------------------r---routes-------------
 app.use(require("./routes/Complaint"));
+app.use(require("./routes/RoomCleaning"));
+app.use(require("./routes/Harresment"));
+app.use(require("./routes/MessIssue"));
 
 server.listen(port, () => {
   console.log(`Server started on port ${port}!`);
