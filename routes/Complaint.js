@@ -69,9 +69,12 @@ router.post("/api/verifyComplaintOTP", async (req, res) => {
 
     // Retrieve OTP from the map
     const storedOTP = otpMap.get(mailVIT);
+    
+    console.log("Stored OTP:", storedOTP);
+    console.log("Received OTP:", otp);
 
     // Check if OTP matches
-    if (otp && otp.toString() === storedOTP.toString()) {
+    if (otp && storedOTP && otp.toString() === storedOTP.toString()) {
       // Clear OTP from the map
       otpMap.delete(mailVIT);
 
@@ -104,6 +107,7 @@ router.post("/api/verifyComplaintOTP", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 router.get("/api/getComplaint", (req, res) => {
   partnerWithUs.find()
