@@ -36,18 +36,18 @@ router.post("/api/postComplaint", upload.single('file'), async (req, res) => {
   };
 
   try {
-    const { mailId } = req.body;
+    const { mailVIT } = req.body;
 
     // Generate OTP
     const otp = generateOTP();
 
     // Store OTP in the map
-    otpMap.set(mailId, otp);
+    otpMap.set(mailVIT, otp);
 
     // Define email options with OTP
     const mailOptions = {
       from: process.env.EMAIL_USERNAME,
-      to: mailId,
+      to: mailVIT,
       subject: "OTP for Hostel Buddy complaint",
       text: `Your OTP for is: ${otp}`,
     };
@@ -65,15 +65,15 @@ router.post("/api/postComplaint", upload.single('file'), async (req, res) => {
 
 router.post("/api/verifyComplaintOTP", async (req, res) => {
   try {
-    const { mailId, otp } = req.body;
+    const { mailVIT, otp } = req.body;
 
     // Retrieve OTP from the map
-    const storedOTP = otpMap.get(mailId);
+    const storedOTP = otpMap.get(mailVIT);
 
     // Check if OTP matches
     if (otp && otp.toString() === storedOTP.toString()) {
       // Clear OTP from the map
-      otpMap.delete(mailId);
+      otpMap.delete(mailVIT);
 
       // Proceed with partner creation and email sending
       const fileName = req.file ? req.file.originalname : null;
@@ -86,7 +86,7 @@ router.post("/api/verifyComplaintOTP", async (req, res) => {
       // Define email options
       const mailOptions = {
         from: process.env.EMAIL_USERNAME,
-        to: mailId,
+        to: mailVIT,
         subject: "Thanks for contacting us",
         text: "Thanks for reaching out to us. Your issue will be resolved soon!",
       };

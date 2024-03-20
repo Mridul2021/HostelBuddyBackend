@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 
 const PartnerSchema = new mongoose.Schema({
-  FullName: {
+  name: {
     type: String,
     required: true,
     trim: true,
     maxlength: 50,
   },
-  RegNo: {
+  regNo: {
     type: String,
     required: true,
     trim: true,
     maxlength: 50,
   },
-  Block: {
+  selectedBlock: {
     type: String,
     required: true,
     trim: true,
     maxlength: 50,
   },
-  RoomNo: {
+  roomNo: {
     type: String,
     required: true,
     trim: true,
     match: /^[0-9]+$/, // Only allow numerical values
   },
-  mailId: {
+  mailVIT: {
     type: String,
     required: true,
     trim: true,
@@ -33,12 +33,12 @@ const PartnerSchema = new mongoose.Schema({
     unique: true, // Ensure unique email addresses
     match: /^\S+@\S+\.\S+$/, // Basic email format validation
   },
-  IssueType: {
+  issueType: {
     type: String,
     required: true,
     trim: true,
   },
-  Description: {
+  description: {
     type: String,
     required: true,
     trim: true,
