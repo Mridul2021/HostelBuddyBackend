@@ -98,7 +98,7 @@ router.post("/api/verifyComplaintOTP", async (req, res) => {
       await transporter.sendMail(mailOptions);
 
       // Send the response after both operations are completed
-      res.status(200).json(users);
+      res.status(200).json({ message: "OTP Verified", success: true });
     } else {
       res.status(400).json({ error: "Invalid OTP" });
     }
