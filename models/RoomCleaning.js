@@ -33,7 +33,7 @@ const roomCleaningSchema = new mongoose.Schema({
     match: /^\S+@\S+\.\S+$/, // Basic email format validation
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
   time: {
